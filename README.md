@@ -15,7 +15,7 @@ for me.
   https://docs.nvidia.com/cuda/wsl-user-guide/index.html
 * Manually run `start_ssh.ps1` script once your computer boots up (couldn't quite figure
   out how to get it to run on boot, maybe it's because I don't have Windows 11
-  Pro?).  Script does a few things
+  Pro?).  Script does a few things:
     * Starts sshd on WSL on boot (ensure you have it installed on WSL)
     * Extract the IP address of the wsl (changes on each boot)
     * Proxies {ssh, Grafana} your public address (e.g. Wifi) to the wsl box
