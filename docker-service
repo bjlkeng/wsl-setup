@@ -1,0 +1,10 @@
+DOCKER_DISTRO="Ubuntu"
+DOCKER_LOG_DIR=$HOME/docker_logs
+mkdir -pm o=,ug=rwx "$DOCKER_LOG_DIR"
+/mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_LOG_DIR/dockerd.log 2>&1" 
+
+cd ~/prometheus-grafana/ && docker compose up -d
+
+echo "Running nvidia_gpu_exporter..."
+~/bin/nvidia_gpu_exporter > $DOCKER_LOG_DIR/nvidia_gpu_exporter.log 2>&1
+
