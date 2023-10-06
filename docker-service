@@ -5,6 +5,9 @@ mkdir -pm o=,ug=rwx "$DOCKER_LOG_DIR"
 
 cd ~/prometheus-grafana/ && docker compose up -d
 
+echo "Running devenv..."
+~/devel/wsl-setup/run_devenv.sh
+
 echo "Running nvidia_gpu_exporter..."
 ~/bin/nvidia_gpu_exporter > $DOCKER_LOG_DIR/nvidia_gpu_exporter.log 2>&1
 
