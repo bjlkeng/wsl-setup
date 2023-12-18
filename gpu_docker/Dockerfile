@@ -1,13 +1,19 @@
 FROM nvcr.io/nvidia/pytorch:23.09-py3
 
-RUN apt-get -y update
-RUN apt-get -y install git openssh-server sudo
+RUN apt-get -y update \
+ && apt-get -y install git \
+                       openssh-server \
+                       sudo \
+                       python3.10-venv \
+                       ffmpeg libsm6 libxext6 # Needed for opencv (cv2)
+
 
 RUN useradd -m -d /home/bjlkeng -s /bin/bash -g root -G sudo -u 1000 bjlkeng
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN sed -i 's,.*Port.*,Port 22222,g' /etc/ssh/sshd_config
 RUN sed -i 's,.*PasswordAuthentication.*,PasswordAuthentication no,g' /etc/ssh/sshd_config
 RUN service ssh start
+
 
 USER bjlkeng
 WORKDIR /home/bjlkeng
