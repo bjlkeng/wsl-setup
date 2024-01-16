@@ -7,11 +7,12 @@ using the other input on my monitor and a USB switch but it's a hassle, and I
 usually only do that for games.  Otherwise, it's basically a headless server
 for me.
 
+
 ## Notes
 
 * Install Nvidia graphics driver (make sure it matches your PyTorch version)
 * Followed standard instructions for installing WSL
-* Followed standard instructions for installing CUDA:
+* Followed standard instructions for installing CUDA (I think you can skip this step if you're using a docker container):
   https://docs.nvidia.com/cuda/wsl-user-guide/index.html
 * Manually run `start_ssh.ps1` script once your computer boots up (couldn't quite figure
   out how to get it to run on boot, maybe it's because I don't have Windows 11
@@ -25,6 +26,20 @@ for me.
 * Make sure you disable Windows updates (for as long as you can) or else your
   machine will automatically restart (and you'll have to manually run the
   startup script again.
+
+
+## Setup Docker container
+
+* Install docker on WSL2
+* Compile docker container in the `gpu_docker` dir using `make`
+    * The prepackaged Nvidia container should contain the right torch/CUDA versions
+    * Just make sure the Windows driver will support it properly
+* To enable profiling of GPU, make sure (in the Windows driver) to:
+    * "Enable Developer Settings"
+    * "Allow access to the GPU performance counters to all users"
+    * See: 
+        * https://developer.nvidia.com/nvidia-development-tools-solutions-err_nvgpuctrperm-permission-issue-performance-counters
+        * https://github.com/pytorch/pytorch/issues/99615
 
 ## TODO
 
