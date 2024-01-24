@@ -1,7 +1,7 @@
 mkdir -p /home/bjlkeng/.vscode-server-devenv
 
 # Needed to enable profiling in docker container
-echo 1 | sudo tee /proc/sys/kernel/perf_event_paranoid
+# echo 1 | sudo tee /proc/sys/kernel/perf_event_paranoid
 
 docker run -d \
     -v /home/bjlkeng/devel:/home/bjlkeng/devel \

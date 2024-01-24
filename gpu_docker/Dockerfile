@@ -5,8 +5,13 @@ RUN apt-get -y update \
                        openssh-server \
                        sudo \
                        python3.10-venv \
+                       mosh \
+                       locales \
                        ffmpeg libsm6 libxext6 # Needed for opencv (cv2)
 
+# Needed for mosh
+RUN locale-gen en_US.utf8
+RUN locale-gen en_CA.utf8
 
 RUN useradd -m -d /home/bjlkeng -s /bin/bash -g root -G sudo -u 1000 bjlkeng
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

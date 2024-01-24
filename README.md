@@ -21,11 +21,21 @@ for me.
     * Extract the IP address of the wsl (changes on each boot)
     * Proxies {ssh, Grafana} your public address (e.g. Wifi) to the wsl box
         * Add appropriate port forwarding
-    * Starts up docker containers for Prometheus, Grafana and Node explorer, and then also runs [nvidia_gpu_explorer](https://github.com/utkuozdemir/nvidia_gpu_exporter)
+    * Starts up docker containers for Prometheus, Grafana and Node explorer, and then also runs [nvidia_gpu_exporter](https://github.com/utkuozdemir/nvidia_gpu_exporter)
 * Need to open up ports on Windows firewall or you cannot make external connections (e.g. ssh)
 * Make sure you disable Windows updates (for as long as you can) or else your
   machine will automatically restart (and you'll have to manually run the
   startup script again.
+
+# Linux notes:
+
+* nvidia_gpu_exporter:
+    * Download the .deb package (Ubuntu): https://github.com/utkuozdemir/nvidia_gpu_exporter/releases
+    * Install it `sudo dpkg -i nvidia-gpu-exporter_1.x.y_linux_amd64.deb`
+        * See: https://github.com/utkuozdemir/nvidia_gpu_exporter/blob/master/INSTALL.md
+* Things to install:
+    * docker
+    * mosh
 
 
 ## Setup Docker container
@@ -40,6 +50,7 @@ for me.
     * See: 
         * https://developer.nvidia.com/nvidia-development-tools-solutions-err_nvgpuctrperm-permission-issue-performance-counters
         * https://github.com/pytorch/pytorch/issues/99615
+* For Linux, install Nvidia container toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
 ## TODO
 
